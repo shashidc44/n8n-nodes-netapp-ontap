@@ -1,5 +1,6 @@
 import type {
 	IAuthenticateGeneric,
+	ICredentialTestRequest,
 	ICredentialType,
 	INodeProperties,
 } from 'n8n-workflow';
@@ -11,6 +12,22 @@ export class NetAppOntapApi implements ICredentialType {
 	icon = 'file:netapp.svg' as const;
 
 	properties: INodeProperties[] = [
+		{
+			displayName: 'Cluster Host',
+			name: 'clusterHost',
+			type: 'string',
+			default: '',
+			placeholder: 'cluster.example.com',
+			description: 'The hostname or IP address of the ONTAP cluster management LIF',
+			required: true,
+		},
+		{
+			displayName: 'Port',
+			name: 'clusterPort',
+			type: 'number',
+			default: 443,
+			description: 'HTTPS port for the ONTAP REST API',
+		},
 		{
 			displayName: 'Username',
 			name: 'username',
@@ -50,5 +67,11 @@ export class NetAppOntapApi implements ICredentialType {
 		},
 	};
 
-	// Note: Credential test is performed via the cluster host specified in the node
+	test: ICredentialTestRequest = {
+		request: {
+			baseURL: '=https://{{$credentials.clusterHost}}:{{$credentials.clusterPort}}',
+			url: '/api/cluster',
+			skipSslCertificateValidation: '={{$credentials.allowUnauthorizedCerts}}',
+		},
+	};
 }

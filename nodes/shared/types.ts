@@ -1,9 +1,11 @@
 import type { IDataObject } from 'n8n-workflow';
 
 /**
- * ONTAP API credentials structure (auth only, host is in node parameters)
+ * ONTAP API credentials structure
  */
 export interface OntapCredentials {
+	clusterHost: string;
+	clusterPort: number;
 	username: string;
 	password: string;
 	allowUnauthorizedCerts: boolean;
