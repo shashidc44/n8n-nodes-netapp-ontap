@@ -1,0 +1,70 @@
+{
+  "name": "n8n-nodes-netapp-ontap",
+  "version": "1.0.0",
+  "description": "n8n community nodes for NetApp ONTAP REST API operations",
+  "keywords": [
+    "n8n-community-node-package",
+    "netapp",
+    "ontap",
+    "storage",
+    "san",
+    "nas",
+    "snapmirror"
+  ],
+  "license": "MIT",
+  "homepage": "https://github.com/shashidc44/n8n-nodes-netapp-ontap",
+  "author": {
+    "name": "shashidc44"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/shashidc44/n8n-nodes-netapp-ontap.git"
+  },
+  "main": "dist/index.js",
+  "types": "dist/index.d.ts",
+  "scripts": {
+    "build": "tsc && gulp build:icons",
+    "dev": "tsc --watch",
+    "format": "prettier nodes credentials --write",
+    "lint": "eslint nodes credentials --ext .ts",
+    "lintfix": "eslint nodes credentials --ext .ts --fix",
+    "prepublishOnly": "npm run build"
+  },
+  "files": [
+    "dist"
+  ],
+  "n8n": {
+    "n8nNodesApiVersion": 1,
+    "strict": true,
+    "credentials": [
+      "dist/credentials/NetAppOntapApi.credentials.js"
+    ],
+    "nodes": [
+      "dist/nodes/NetAppOntapCluster/NetAppOntapCluster.node.js",
+      "dist/nodes/NetAppOntapSvm/NetAppOntapSvm.node.js",
+      "dist/nodes/NetAppOntapStorage/NetAppOntapStorage.node.js",
+      "dist/nodes/NetAppOntapNetwork/NetAppOntapNetwork.node.js",
+      "dist/nodes/NetAppOntapSan/NetAppOntapSan.node.js",
+      "dist/nodes/NetAppOntapNas/NetAppOntapNas.node.js",
+      "dist/nodes/NetAppOntapSnapMirror/NetAppOntapSnapMirror.node.js",
+      "dist/nodes/NetAppOntapSecurity/NetAppOntapSecurity.node.js"
+    ]
+  },
+  "devDependencies": {
+    "@types/node": "^20.10.0",
+    "@typescript-eslint/eslint-plugin": "^8.56.1",
+    "@typescript-eslint/parser": "^8.56.1",
+    "eslint": "^8.54.0",
+    "eslint-plugin-n8n-nodes-base": "^1.16.0",
+    "gulp": "^5.0.1",
+    "n8n-workflow": "^2.10.1",
+    "prettier": "^3.1.0",
+    "typescript": "^5.3.0"
+  },
+  "peerDependencies": {
+    "n8n-workflow": "*"
+  },
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
