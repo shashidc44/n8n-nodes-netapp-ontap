@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-netapp-ontap",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "n8n community nodes for NetApp ONTAP REST API operations",
   "keywords": [
     "n8n-community-node-package",
@@ -14,7 +14,8 @@
   "license": "MIT",
   "homepage": "https://github.com/shashidc44/n8n-nodes-netapp-ontap",
   "author": {
-    "name": "shashidc44"
+    "name": "shashidc44",
+    "email": "shashidhargc44@gmail.com"
   },
   "repository": {
     "type": "git",
