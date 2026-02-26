@@ -3,8 +3,8 @@ import type {
 	IExecuteFunctions,
 	IHookFunctions,
 	IHttpRequestMethods,
+	IHttpRequestOptions,
 	ILoadOptionsFunctions,
-	IRequestOptions,
 	JsonObject,
 } from 'n8n-workflow';
 import { NodeApiError, sleep } from 'n8n-workflow';
@@ -42,13 +42,13 @@ export async function ontapApiRequest(
 	const credentials = await this.getCredentials('netAppOntapApi') as OntapCredentials;
 	const baseUrl = getOntapBaseUrl(credentials.clusterHost, credentials.clusterPort || 443);
 
-	const options: IRequestOptions = {
+	const options: IHttpRequestOptions = {
 		method,
 		body,
 		qs: query,
-		uri: uri || `${baseUrl}/api${endpoint}`,
-		json: true,
-		rejectUnauthorized: !credentials.allowUnauthorizedCerts,
+		url: uri || `${baseUrl}/api${endpoint}`,
+		skipSslCertificateValidation: credentials.allowUnauthorizedCerts,
+		returnFullResponse: false,
 		headers: {
 			'Content-Type': 'application/json',
 			'Accept': 'application/hal+json',
@@ -66,7 +66,7 @@ export async function ontapApiRequest(
 	}
 
 	try {
-		const response = await this.helpers.requestWithAuthentication.call(
+		const response = await this.helpers.httpRequestWithAuthentication.call(
 			this,
 			'netAppOntapApi',
 			options,
