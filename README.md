@@ -78,11 +78,13 @@ Security and access management:
 ## Credentials
 
 Configure NetApp ONTAP API credentials with:
-- **Cluster Management IP/Hostname**: ONTAP cluster management LIF
 - **Username**: API username (typically `admin`)
 - **Password**: API password
-- **Port**: REST API port (default: 443)
-- **Allow Unauthorized Certificates**: Skip TLS verification (for testing)
+- **Ignore SSL Certificate Issues**: Skip TLS verification (for self-signed certificates)
+- **Test Cluster Host** *(optional)*: A cluster hostname used only to verify credentials via the "Test" button
+- **Test Cluster Port** *(optional)*: Port for the test connection (default: 443)
+
+> **Note:** Credentials are reusable across multiple clusters. The actual cluster host and port are specified in each node, not in the credential.
 
 ## Features
 
