@@ -1,6 +1,6 @@
 {
   "name": "n8n-nodes-netapp-ontap",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "description": "n8n community nodes for NetApp ONTAP REST API operations",
   "keywords": [
     "n8n-community-node-package",

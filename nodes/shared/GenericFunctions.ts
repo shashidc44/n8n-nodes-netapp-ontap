@@ -40,7 +40,11 @@ export async function ontapApiRequest(
 	uri?: string,
 ): Promise<OntapApiResponse> {
 	const credentials = await this.getCredentials('netAppOntapApi') as OntapCredentials;
-	const baseUrl = getOntapBaseUrl(credentials.clusterHost, credentials.clusterPort || 443);
+
+	// Get cluster host and port from node parameters
+	const clusterHost = this.getNodeParameter('clusterHost', 0) as string;
+	const clusterPort = this.getNodeParameter('clusterPort', 0, 443) as number;
+	const baseUrl = getOntapBaseUrl(clusterHost, clusterPort);
 
 	const options: IHttpRequestOptions = {
 		method,
@@ -90,8 +94,10 @@ export async function ontapApiRequestAllItems(
 	query: IDataObject = {},
 	propertyName = 'records',
 ): Promise<IDataObject[]> {
-	const credentials = await this.getCredentials('netAppOntapApi') as OntapCredentials;
-	const baseUrl = getOntapBaseUrl(credentials.clusterHost, credentials.clusterPort || 443);
+	// Get cluster host and port from node parameters
+	const clusterHost = this.getNodeParameter('clusterHost', 0) as string;
+	const clusterPort = this.getNodeParameter('clusterPort', 0, 443) as number;
+	const baseUrl = getOntapBaseUrl(clusterHost, clusterPort);
 
 	const returnData: IDataObject[] = [];
 	let responseData: OntapApiResponse;

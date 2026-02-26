@@ -36,6 +36,23 @@ export class NetAppOntapStorage implements INodeType {
 			},
 		],
 		properties: [
+			// Cluster Connection
+			{
+				displayName: 'Cluster Host',
+				name: 'clusterHost',
+				type: 'string',
+				default: '',
+				placeholder: 'cluster.example.com',
+				description: 'The hostname or IP address of the ONTAP cluster management LIF',
+				required: true,
+			},
+			{
+				displayName: 'Port',
+				name: 'clusterPort',
+				type: 'number',
+				default: 443,
+				description: 'HTTPS port for the ONTAP REST API',
+			},
 			// Resource Selection
 			{
 				displayName: 'Resource',

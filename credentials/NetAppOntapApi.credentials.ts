@@ -13,22 +13,6 @@ export class NetAppOntapApi implements ICredentialType {
 
 	properties: INodeProperties[] = [
 		{
-			displayName: 'Cluster Host',
-			name: 'clusterHost',
-			type: 'string',
-			default: '',
-			placeholder: 'cluster.example.com',
-			description: 'The hostname or IP address of the ONTAP cluster management LIF',
-			required: true,
-		},
-		{
-			displayName: 'Port',
-			name: 'clusterPort',
-			type: 'number',
-			default: 443,
-			description: 'HTTPS port for the ONTAP REST API',
-		},
-		{
 			displayName: 'Username',
 			name: 'username',
 			type: 'string',
@@ -54,6 +38,21 @@ export class NetAppOntapApi implements ICredentialType {
 			type: 'boolean',
 			default: false,
 			description: 'Whether to connect even if the SSL certificate is invalid (e.g., self-signed certificates)',
+		},
+		{
+			displayName: 'Test Cluster Host',
+			name: 'clusterHost',
+			type: 'string',
+			default: '',
+			placeholder: 'cluster.example.com',
+			description: 'Enter a cluster hostname to verify your credentials. This is only used for testing — the actual cluster is specified in each node.',
+		},
+		{
+			displayName: 'Test Cluster Port',
+			name: 'clusterPort',
+			type: 'number',
+			default: 443,
+			description: 'Port for the test connection',
 		},
 	];
 
